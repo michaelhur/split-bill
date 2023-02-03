@@ -1,9 +1,14 @@
 import {render, screen} from '@testing-library/react';
-import CreateGroup from './CreateGroup';
+import {CreateGroup} from './CreateGroup';
 import userEvent from '@testing-library/user-event';
+import {RecoilRoot} from 'recoil';
 
 const renderComponent = () => {
-    render(<CreateGroup />)
+    render(
+        <RecoilRoot>
+            <CreateGroup />
+        </RecoilRoot>
+    )
 
     const input = screen.getByPlaceholderText('ex) 2022 제주도 여행')
     const saveButton = screen.getByText('저장')
@@ -36,6 +41,6 @@ describe('그룹 생성 페이지', () => {
 
         await userEvent.type(input, '예시 그룹명')
         await userEvent.click(saveButton)
-        expect(errorMessage).toBeNull()
+        expect(errorMessage).not.toHaveStyle({"display": "none"})
     })
 })
