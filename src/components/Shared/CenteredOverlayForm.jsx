@@ -1,45 +1,63 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Button, Container, Row} from 'react-bootstrap';
+import {Button, Container, Form, Row} from 'react-bootstrap';
 import {OverlayWrapper} from './OverlayWrapper';
 
-export const CenteredOverlayForm = ({title, children}) => {
+export const CenteredOverlayForm = ({title, validated, handleSubmit, children}) => {
     return (
         <>
             <CentralizedContainer>
-                <StyledHeader>Dutch Pay</StyledHeader>
+                <StyledH1>Dutch Pay</StyledH1>
                 <OverlayWrapper>
-                    {children}
+                    <Container>
+                        <Form
+                            noValidate
+                            validated={validated}
+                            onSubmit={handleSubmit}>
+                            <StyledRow>
+                                <Row className="align-items-start">
+                                    <StyledH2>{title}</StyledH2>
+                                </Row>
+                                <Row className="align-items-center">
+                                    {children}
+                                </Row>
+                                <Row className="align-items-end">
+                                    <StyledSubmitButton type="submit">
+                                        저장
+                                    </StyledSubmitButton>
+                                </Row>
+                            </StyledRow>
+                        </Form>
+                    </Container>
+                    {/*{children}*/}
                 </OverlayWrapper>
             </CentralizedContainer>
         </>
     )
 };
 
-const StyledHeader = styled.h1`
-  font-family: 'Poppins';
+const StyledH1 = styled.h1`
   font-style: normal;
   font-weight: 700;
   font-size: 48px;
   line-height: 48px;
 
   letter-spacing: 0.25px;
-  
-  color: #212121;
+
+  color: #6610F2;
 `
 
 const CentralizedContainer = styled(Container)`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 0px;
-    gap: 10px;
-    
-    width: 50%;
-    min-height: 100vh;
-`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  gap: 10px;
 
+  width: 50%;
+  min-height: 100vh;
+`
 
 export const StyledH2 = styled.h2`
   text-align: right;
@@ -57,6 +75,7 @@ export const StyledSubmitButton = styled(Button).attrs({type: 'submit'})`
     filter: brightness(80%)
   }
 `
+
 export const StyledRow = styled(Row)`
   justify-content: center;
   align-items: center;
