@@ -1,6 +1,6 @@
 import {atom} from 'recoil';
 
 export const groupNameState = atom({
-    key: "groupName",
+    key: "groupNameState",
     default: undefined,
 })
