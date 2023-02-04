@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Container} from 'react-bootstrap';
-import {OverlayWrapper} from './Shared/OverlayWrapper';
+import {Button, Container, Row} from 'react-bootstrap';
+import {OverlayWrapper} from './OverlayWrapper';
 
-export const CenteredOverlayForm = ({children}) => {
+export const CenteredOverlayForm = ({title, children}) => {
     return (
         <>
             <CentralizedContainer>
@@ -40,3 +40,25 @@ const CentralizedContainer = styled(Container)`
     min-height: 100vh;
 `
 
+
+export const StyledH2 = styled.h2`
+  text-align: right;
+  overflow-wrap: break-word;
+  word-break: keep-all;
+`
+
+export const StyledSubmitButton = styled(Button).attrs({type: 'submit'})`
+  background: #6610F2;
+  border-radius: 8px;
+  border: none;
+
+  &:hover {
+    background: #6610F2;
+    filter: brightness(80%)
+  }
+`
+export const StyledRow = styled(Row)`
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+`

@@ -1,7 +1,7 @@
 import {render, screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {RecoilRoot} from 'recoil';
-import AddMembers from './AddMembers';
+import {AddMembers} from './AddMembers';
 
 const renderComponent = () => {
     render(
@@ -32,7 +32,7 @@ describe('그룹 멤버 추가 페이지', () => {
 
         await userEvent.click(saveButton)
 
-        const errorMessage = await screen.findByText('멤버 이름을 입력해주세요!')
+        const errorMessage = await screen.findByText('그룹 멤버들의 이름을 입력해주세요')
         expect(errorMessage).toBeInTheDocument()
     })
 
@@ -42,7 +42,7 @@ describe('그룹 멤버 추가 페이지', () => {
         await userEvent.type(input, '예시 멤버명')
         await userEvent.click(saveButton)
 
-        const errorMessage = await screen.findByText('멤버 이름을 입력해주세요!')
+        const errorMessage = await screen.findByText('그룹 멤버들의 이름을 입력해주세요')
         expect(errorMessage).not.toBeInTheDocument()
     })
 })
