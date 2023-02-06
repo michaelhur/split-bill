@@ -16,12 +16,19 @@ const renderComponent = () => {
     const payerInput = screen.getByPlaceholderText(/누가 결제/i)
     const addButton = screen.getByText('추가하기')
 
+    const descErrorMessage = screen.queryByText('비용 내용을 입력해주셔야 합니다.')
+    const payerErrorMessage = screen.queryByText('결제자를 선택해주셔야 합니다.')
+    const amountErrorMessage = screen.queryByText('금액을 입력해주셔야 합니다.')
+
     return {
         dateInput,
         descInput,
         amountInput,
         payerInput,
         addButton,
+        descErrorMessage,
+        payerErrorMessage,
+        amountErrorMessage
     }
 }
 
@@ -39,36 +46,26 @@ describe('비용 정산 메인 페이지', () => {
         })
 
         test('필수값을 입력하지 않고 "추가" 버튼 클릭시 에러 메세지 노출', async () => {
-            const {addButton} = renderComponent()
+            const {addButton, descErrorMessage, payerErrorMessage, amountErrorMessage} = renderComponent()
             expect(addButton).toBeInTheDocument()
 
             await userEvent.click(addButton)
 
-            const descErrorMessage = screen.getByText('비용 내용을 입력해주셔야 합니다.')
             expect(descErrorMessage).toHaveAttribute('data-valid','false')
-
-            const payerErrorMessage = screen.getByText('결제자를 선택해주셔야 합니다.')
             expect(payerErrorMessage).toHaveAttribute('data-valid','false')
-
-            const amountErrorMessage = screen.getByText('금액을 입력해주셔야 합니다.')
             expect(amountErrorMessage).toHaveAttribute('data-valid','false')
         })
 
         test('필수값을 입력한 후 "추가" 버튼 클릭시 저장에 성공한다.', async () => {
-            const {descInput, amountInput, payerInput, addButton} = renderComponent()
+            const {descInput, amountInput, payerInput, addButton, descErrorMessage, payerErrorMessage, amountErrorMessage} = renderComponent()
 
             await userEvent.type(descInput, '장보기')
             await userEvent.type(amountInput, '30000')
             await userEvent.selectOptions(payerInput, '영수')
             await userEvent.click(addButton)
 
-            const descErrorMessage = screen.queryByText('비용 내용을 입력해주셔야 합니다.')
             expect(descErrorMessage).toHaveAttribute('data-valid','true')
-
-            const payerErrorMessage = screen.queryByText('결제자를 선택해주셔야 합니다.')
             expect(payerErrorMessage).toHaveAttribute('data-valid','true')
-
-            const amountErrorMessage = screen.queryByText('금액을 입력해주셔야 합니다.')
             expect(amountErrorMessage).toHaveAttribute('data-valid','true')
         })
     })
