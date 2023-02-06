@@ -28,7 +28,7 @@ const renderComponent = () => {
 describe('비용 정산 메인 페이지', () => {
 
     describe('비용 추가 컴포넌트', () => {
-        test('비용 추가 컴포넌트 렌더링', () => {
+        test('비용 추가 컴포넌트 렌더링', async () => {
             const {dateInput, descInput, amountInput, payerInput, addButton} = renderComponent()
 
             expect(dateInput).toBeInTheDocument()
@@ -38,7 +38,7 @@ describe('비용 정산 메인 페이지', () => {
             expect(addButton).toBeInTheDocument()
         })
 
-        test('필수값을 입력하지 않고 "추가" 버튼 클릭시 에러 메세지 노출', () => {
+        test('필수값을 입력하지 않고 "추가" 버튼 클릭시 에러 메세지 노출', async () => {
             const {addButton} = renderComponent()
             expect(addButton).toBeInTheDocument()
 
@@ -54,7 +54,7 @@ describe('비용 정산 메인 페이지', () => {
             expect(amountErrorMessage).toBeInTheDocument()
         })
 
-        test('필수값을 입력한 후 "추가" 버튼 클릭시 저장에 성공한다.', () => {
+        test('필수값을 입력한 후 "추가" 버튼 클릭시 저장에 성공한다.', async () => {
             const {descInput, amountInput, payerInput, addButton} = renderComponent()
 
             await userEvent.type(descInput, '장보기')
