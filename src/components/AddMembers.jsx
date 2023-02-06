@@ -20,6 +20,7 @@ export const AddMembers = () => {
     }
 
     const title = `${groupName} 그룹의 속한 사람들의 이름을 모두 적어주세요!`
+    const isError = formSubmitted && groupMembers.length === 0
 
     return (
         <CenteredOverlayForm
@@ -34,9 +35,7 @@ export const AddMembers = () => {
                     setGroupMembers(value.values)
                 }}
             />
-            {formSubmitted && groupMembers.length === 0 &&
-                <StyledErrorMessage>그룹 멤버들의 이름을 입력해주세요</StyledErrorMessage>
-            }
+            <StyledErrorMessage style={{display: isError ? "block" : "none"}}>그룹 멤버들의 이름을 입력해주세요</StyledErrorMessage>
         </CenteredOverlayForm>
     );
 };

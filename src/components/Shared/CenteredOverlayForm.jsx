@@ -22,7 +22,7 @@ export const CenteredOverlayForm = ({title, validated, handleSubmit, children}) 
                                     {children}
                                 </Row>
                                 <Row className="align-items-end">
-                                    <StyledSubmitButton type="submit">
+                                    <StyledSubmitButton id="saveButton" type="submit">
                                         저장
                                     </StyledSubmitButton>
                                 </Row>

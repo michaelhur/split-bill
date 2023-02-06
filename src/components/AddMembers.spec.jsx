@@ -10,12 +10,14 @@ const renderComponent = () => {
         </RecoilRoot>
     )
 
-    const input = screen.getByTestId('input-member-names')
+    const input = screen.getByPlaceholderText('이름 간 띄어쓰기')
     const saveButton = screen.getByText('저장')
+    const errorMessage = screen.queryByText('그룹 멤버들의 이름을 입력해주세요')
 
     return {
         input,
         saveButton,
+        errorMessage,
     }
 }
 
@@ -28,21 +30,19 @@ describe('그룹 멤버 추가 페이지', () => {
     })
 
     test('그룹 멤버를 입력하지 않고 저장 버튼 클릭시, 에러 메세지를 노출한다.', async () => {
-        const {saveButton} = renderComponent()
+        const {saveButton, errorMessage} = renderComponent()
 
         await userEvent.click(saveButton)
 
-        const errorMessage = await screen.findByText('그룹 멤버들의 이름을 입력해주세요')
-        expect(errorMessage).toBeInTheDocument()
+        expect(errorMessage).toHaveStyle({"display": "block"})
     })
 
     test('그룹 멤버를 입력 후, 저장 버튼 클릭시, 저장 성공', async () => {
-        const {input, saveButton} = renderComponent()
+        const {input, saveButton, errorMessage} = renderComponent()
 
         await userEvent.type(input, '예시 멤버명')
         await userEvent.click(saveButton)
 
-        const errorMessage = await screen.findByText('그룹 멤버들의 이름을 입력해주세요')
-        expect(errorMessage).not.toBeInTheDocument()
+        expect(errorMessage).toHaveStyle({"display": "none"})
     })
 })
