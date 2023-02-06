@@ -1,5 +1,5 @@
 import React from 'react';
-import AddExpenseForm from './AddExpenseForm';
+import {AddExpenseForm} from './AddExpenseForm';
 
 const ExpenseMain = () => {
     return (
