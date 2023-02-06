@@ -14,7 +14,7 @@ const renderComponent = () => {
     const descInput = screen.getByPlaceholderText(/비용에 대한 설명/i)
     const amountInput = screen.getByPlaceholderText(/비용은 얼마/i)
     const payerInput = screen.getByPlaceholderText(/누가 결제/i)
-    const addButton = screen.getByText('저장')
+    const addButton = screen.getByText('추가하기')
 
     return {
         dateInput,
@@ -45,13 +45,13 @@ describe('비용 정산 메인 페이지', () => {
             await userEvent.click(addButton)
 
             const descErrorMessage = screen.getByText('비용 내용을 입력해주셔야 합니다.')
-            expect(descErrorMessage).toBeInTheDocument()
+            expect(descErrorMessage).toHaveAttribute('data-valid','false')
 
             const payerErrorMessage = screen.getByText('결제자를 선택해주셔야 합니다.')
-            expect(payerErrorMessage).toBeInTheDocument()
+            expect(payerErrorMessage).toHaveAttribute('data-valid','false')
 
             const amountErrorMessage = screen.getByText('금액을 입력해주셔야 합니다.')
-            expect(amountErrorMessage).toBeInTheDocument()
+            expect(amountErrorMessage).toHaveAttribute('data-valid','false')
         })
 
         test('필수값을 입력한 후 "추가" 버튼 클릭시 저장에 성공한다.', async () => {
@@ -63,13 +63,13 @@ describe('비용 정산 메인 페이지', () => {
             await userEvent.click(addButton)
 
             const descErrorMessage = screen.queryByText('비용 내용을 입력해주셔야 합니다.')
-            expect(descErrorMessage).not.toBeInTheDocument()
+            expect(descErrorMessage).toHaveAttribute('data-valid','true')
 
             const payerErrorMessage = screen.queryByText('결제자를 선택해주셔야 합니다.')
-            expect(payerErrorMessage).not.toBeInTheDocument()
+            expect(payerErrorMessage).toHaveAttribute('data-valid','true')
 
             const amountErrorMessage = screen.queryByText('금액을 입력해주셔야 합니다.')
-            expect(amountErrorMessage).not.toBeInTheDocument()
+            expect(amountErrorMessage).toHaveAttribute('data-valid','true')
         })
     })
 
