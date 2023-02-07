@@ -61,7 +61,7 @@ export const AddExpenseForm = () => {
             <StyledForm
                 noValidate
                 onSubmit={handleSubmit}>
-                <h3>1. 비용 추가하기</h3>
+                <StyledTitle>1. 비용 추가하기</StyledTitle>
                 <StyledRow>
                     <Form.Group>
                         <Form.Control
@@ -94,8 +94,9 @@ export const AddExpenseForm = () => {
                             <Form.Control
                                 type="number"
                                 name="expenseAmount"
-                                value={amount}
-                                onChange={(e) => setAmount(e.target.value)}
+                                step="0.01"
+                                value={amount || ''}
+                                onChange={(e) => setAmount(e.target.value || 0)}
                                 isValid={isAmountValid}
                                 isInvalid={!isAmountValid && isFormValidated}
                                 placeholder="비용은 얼마였나요?"/>
@@ -108,6 +109,7 @@ export const AddExpenseForm = () => {
                     <Col xs={12} lg={6}>
                         <Form.Group>
                             <Form.Select
+                                className="form-control"
                                 name="expensePayer"
                                 defaultValue=""
                                 onChange={(e) => setPayer(e.target.value)}
@@ -116,7 +118,7 @@ export const AddExpenseForm = () => {
                                 placeholder="누가 결제했나요?">
                                 <option disabled value="">누가 결제했나요?</option>
                                 {members.map(member => {
-                                    <option key={member} value={member}>{member}</option>
+                                    return <option key={member} value={member}>{member}</option>
                                 })}
                                 <option value="영수">영수</option>
                                 <option value="영희">영희</option>
@@ -147,7 +149,7 @@ const StyledForm = styled(Form)`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   
   width: 100%;
   gap: 15px;
@@ -169,6 +171,19 @@ const StyledForm = styled(Form)`
     ::placeholder {
       color: #F8F9FA;
     }
+  }
+`
+
+const StyledTitle = styled.h3`
+  color: #FFFBFB;
+  text-align: center;
+  font-weight: 700;
+  font-size: 35px;
+  line-height: 48px;
+  letter-spacing: 0.25px;
+  margin-bottom: 15px;
+  @media screen and (max-width: 600px) {
+    font-size: 8vw;
   }
 `
 

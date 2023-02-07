@@ -87,8 +87,8 @@ describe('비용 정산 메인 페이지', () => {
             await userEvent.selectOptions(payerInput, '영수')
             await userEvent.click(addButton)
         }
-        test('날짜, 내용, 결제자, 금액 데이터가 정산 리슽트에 추가된다', () => {
-            addNewExpense()
+        test('날짜, 내용, 결제자, 금액 데이터가 정산 리슽트에 추가된다', async () => {
+            await addNewExpense()
             const expenseListComponent = screen.getByTestId('expenseList')
             const dateValue = within(expenseListComponent).getByText('2023-01-01')
             expect(dateValue).toBeInTheDocument()
