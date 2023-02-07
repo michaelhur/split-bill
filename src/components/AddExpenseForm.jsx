@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button, Col, Form, Row} from 'react-bootstrap';
+import {Button, Form, Row} from 'react-bootstrap';
 import {useRecoilValue, useSetRecoilState} from 'recoil';
 import {groupMembersState} from '../state/groupMembers';
 import {expensesState} from '../state/expenses';
@@ -89,53 +89,51 @@ export const AddExpenseForm = () => {
                     </Form.Group>
                 </StyledRow>
                 <StyledRow>
-                    <Col xs={12} lg={6}>
-                        <Form.Group>
-                            <Form.Control
-                                type="number"
-                                name="expenseAmount"
-                                step="0.01"
-                                value={amount || ''}
-                                onChange={(e) => setAmount(e.target.value || 0)}
-                                isValid={isAmountValid}
-                                isInvalid={!isAmountValid && isFormValidated}
-                                placeholder="비용은 얼마였나요?"/>
-                            <Form.Control.Feedback
-                                type="invalid"
-                                data-valid={isAmountValid}
-                            >금액을 입력해주셔야 합니다.</Form.Control.Feedback>
-                        </Form.Group>
-                    </Col>
-                    <Col xs={12} lg={6}>
-                        <Form.Group>
-                            <Form.Select
-                                className="form-control"
-                                name="expensePayer"
-                                defaultValue=""
-                                onChange={(e) => setPayer(e.target.value)}
-                                isValid={isPayerValid}
-                                isInvalid={!isPayerValid && isFormValidated}
-                                placeholder="누가 결제했나요?">
-                                <option disabled value="">누가 결제했나요?</option>
-                                {members.map(member => {
-                                    return <option key={member} value={member}>{member}</option>
-                                })}
-                                <option value="영수">영수</option>
-                                <option value="영희">영희</option>
-                            </Form.Select>
-                            <Form.Control.Feedback
-                                type="invalid"
-                                data-valid={isPayerValid}
-                            >결제자를 선택해주셔야 합니다.</Form.Control.Feedback>
-                        </Form.Group>
-                    </Col>
+                    <Form.Group>
+                        <Form.Control
+                            type="number"
+                            name="expenseAmount"
+                            step="0.01"
+                            value={amount || ''}
+                            onChange={(e) => setAmount(e.target.value || 0)}
+                            isValid={isAmountValid}
+                            isInvalid={!isAmountValid && isFormValidated}
+                            placeholder="비용은 얼마였나요?"/>
+                        <Form.Control.Feedback
+                            type="invalid"
+                            data-valid={isAmountValid}
+                        >금액을 입력해주셔야 합니다.</Form.Control.Feedback>
+                    </Form.Group>
                 </StyledRow>
                 <StyledRow>
-                    <StyledSubmitButton type="submit">추가하기</StyledSubmitButton>
-                </StyledRow>
-            </StyledForm>
-        </StyledWrapper>
-    );
+                    <Form.Group>
+                        <Form.Select
+                            className="form-control"
+                            name="expensePayer"
+                            defaultValue=""
+                            onChange={(e) => setPayer(e.target.value)}
+                            isValid={isPayerValid}
+                            isInvalid={!isPayerValid && isFormValidated}
+                            placeholder="누가 결제했나요?">
+                            <option disabled value="">누가 결제했나요?</option>
+                            {members.map(member => {
+                                return <option key={member} value={member}>{member}</option>
+                            })}
+                            <option value="영수">영수</option>
+                            <option value="영희">영희</option>
+                        </Form.Select>
+                        <Form.Control.Feedback
+                            type="invalid"
+                            data-valid={isPayerValid}
+                        >결제자를 선택해주셔야 합니다.</Form.Control.Feedback>
+                    </Form.Group>
+            </StyledRow>
+            <StyledRow>
+                <StyledSubmitButton type="submit">추가하기</StyledSubmitButton>
+            </StyledRow>
+        </StyledForm>
+</StyledWrapper>
+);
 };
 
 const StyledWrapper = styled.div`
@@ -150,11 +148,13 @@ const StyledForm = styled(Form)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
+
   width: 100%;
   gap: 15px;
 
   input, select {
+    font-size: 14px;
+
     background: #59359A;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
     border-radius: 8px;
@@ -178,10 +178,11 @@ const StyledTitle = styled.h3`
   color: #FFFBFB;
   text-align: center;
   font-weight: 700;
-  font-size: 35px;
+  font-size: 32px;
   line-height: 48px;
   letter-spacing: 0.25px;
   margin-bottom: 15px;
+  
   @media screen and (max-width: 600px) {
     font-size: 8vw;
   }

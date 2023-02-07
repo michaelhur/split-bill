@@ -1,5 +1,5 @@
 import {RecoilRoot} from 'recoil';
-import ExpenseMain from './ExpenseMain';
+import {ExpenseMain} from './ExpenseMain';
 import {render, screen, within} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
