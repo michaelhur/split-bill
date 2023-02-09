@@ -1,22 +1,25 @@
 import React from 'react';
 import {AddExpenseForm} from './AddExpenseForm';
 import {ExpenseTable} from './ExpenseTable';
-import {Col, Container, Row} from 'react-bootstrap';
+import {Col} from 'react-bootstrap';
 import styled from 'styled-components';
+import {useRecoilValue} from 'recoil';
+import {groupNameState} from '../state/groupName';
+import {SettlementSummary} from './SettlementSummary';
+import {ServiceLogo} from './Shared/ServiceLogo';
 
 export const ExpenseMain = () => {
-    // const groupName = useRecoilValue(groupNameState)
-    const groupName = "TESTST"
+    const groupName = useRecoilValue(groupNameState)
 
     return (
         <StyledExpensesMainWrapper>
             <LeftPane xs={12} sm={6} md={5}>
-                <StyledTitle>Split Bill</StyledTitle>
+                <ServiceLogo>Split Bill</ServiceLogo>
                 <AddExpenseForm />
-                {/* TODO: 정산 결과 폼 렌더링 */}
+                <SettlementSummary />
             </LeftPane>
             <RightPane>
-                <StyledGroupName>{groupName}</StyledGroupName>
+                <StyledGroupName>{groupName ? groupName : 'TEST Group'}</StyledGroupName>
                 <ExpenseTable />
             </RightPane>
         </StyledExpensesMainWrapper>
@@ -47,6 +50,10 @@ const LeftPane = styled(Col)`
   gap: 75px;
   
   align-content: stretch;
+
+  @media screen and (max-width: 600px) {
+    padding: 32px;
+  }
 `
 
 const RightPane = styled(Col)`
@@ -56,17 +63,11 @@ const RightPane = styled(Col)`
   align-items: center;
   padding: 100px 30px;
   gap: 75px;
-`
-
-const StyledTitle = styled.h1`
-  font-weight: 700;
-  font-size: 48px;
-  line-height: 1;
-
-  letter-spacing: 0.25px;
-
-  color: #8C68CD;
-  text-shadow: 2px 3px 2px rgba(0, 0, 0, 0.3);
+  
+  @media screen and (max-width: 600px) {
+    padding: 32px;
+    width: 100%;
+  }
 `
 
 const StyledGroupName = styled.h1`

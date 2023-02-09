@@ -27,7 +27,7 @@ export const ExpenseTable = () => {
                 <StyledTableBody>
                 {expenses.map(({date, desc, payer, amount}) => {
                     return (
-                        <tr>
+                        <tr key={Math.random()}>
                             <td>{date}</td>
                             <td>{desc}</td>
                             <td>{payer}</td>
@@ -82,7 +82,7 @@ const StyledTableHeader = styled.thead`
   }
 
   @media screen and (max-width: 600px) {
-    font-size: 4vw;
+    font-size: 14px;
     line-height: 10px;
 
     th {
@@ -112,7 +112,7 @@ const StyledTableBody = styled.tbody`
     width: 100%;
 
     @media screen and (max-width: 600px) {
-      font-size: 4vw;
+      font-size: 12px;
       line-height: 20px;
     }
   }

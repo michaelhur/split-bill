@@ -78,6 +78,15 @@ describe('비용 정산 메인 페이지', () => {
         })
     })
 
+    describe('정산 결과 컴포넌트', () => {
+        test('정산 결과 컴포넌트가 정상적으로 렌더링되는가?', () => {
+            renderComponent()
+
+            const resultComponent = screen.getByTestId('resultList')
+            expect(resultComponent).toBeInTheDocument()
+        })
+    })
+
     describe('새로운 비용이 입력되었을때', () => {
         const addNewExpense = async () => {
             const {dateInput, descInput, payerInput, amountInput, addButton} = renderComponent()
@@ -87,7 +96,8 @@ describe('비용 정산 메인 페이지', () => {
             await userEvent.selectOptions(payerInput, '영수')
             await userEvent.click(addButton)
         }
-        test('날짜, 내용, 결제자, 금액 데이터가 정산 리슽트에 추가된다', async () => {
+
+        test('날짜, 내용, 결제자, 금액 데이터가 정산 리스트에 추가된다', async () => {
             await addNewExpense()
             const expenseListComponent = screen.getByTestId('expenseList')
             const dateValue = within(expenseListComponent).getByText('2023-01-01')
@@ -102,5 +112,16 @@ describe('비용 정산 메인 페이지', () => {
             const amountValue = within(expenseListComponent).getByText('30000')
             expect(amountValue).toBeInTheDocument()
         })
+
+        test('정산 결과 또한 업데이트된다', async () => {
+            await addNewExpense()
+
+            const totalText = screen.getByText(/2명 - 총 30000원 지출/)
+            expect(totalText).toBeInTheDocument()
+
+            const transactionText = screen.getByText(/영희가 영수에게 15000원/)
+            expect(transactionText).toBeInTheDocument()
+        })
     })
+
 })
