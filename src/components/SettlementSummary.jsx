@@ -83,8 +83,7 @@ export const calculateMinimumTransaction = (expenses, members, amountPerPerson) 
 
 export const SettlementSummary = () => {
     const expenses = useRecoilValue(expensesState)
-    // const members = useRecoilValue(groupMembersState)
-    const members = ["A","B","C","D"]
+    const members = useRecoilValue(groupMembersState)
 
     const totalMembersCount = members.length
     const totalExpenseAmount = expenses.reduce((prevAmount, currentExpense) => parseInt(prevAmount) + parseInt(currentExpense.amount), 0)
@@ -93,7 +92,7 @@ export const SettlementSummary = () => {
     const minimumTransaction = calculateMinimumTransaction(expenses, members, splitAmount)
 
     return (
-        <StyledWrapper>
+        <StyledWrapper data-testid="resultList">
             <div>
                 <StyledTitle>2. 정산은 이렇게!</StyledTitle>
                 <StyledResultWrapper>
