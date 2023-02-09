@@ -1,7 +1,7 @@
 import React from 'react';
 import {AddExpenseForm} from './AddExpenseForm';
 import {ExpenseTable} from './ExpenseTable';
-import {Col, Container, Row} from 'react-bootstrap';
+import {Col} from 'react-bootstrap';
 import styled from 'styled-components';
 
 export const ExpenseMain = () => {
