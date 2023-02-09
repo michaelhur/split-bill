@@ -50,6 +50,10 @@ const LeftPane = styled(Col)`
   gap: 75px;
   
   align-content: stretch;
+
+  @media screen and (max-width: 600px) {
+    padding: 32px;
+  }
 `
 
 const RightPane = styled(Col)`
@@ -59,6 +63,11 @@ const RightPane = styled(Col)`
   align-items: center;
   padding: 100px 30px;
   gap: 75px;
+  
+  @media screen and (max-width: 600px) {
+    padding: 32px;
+    width: 100%;
+  }
 `
 
 const StyledGroupName = styled.h1`

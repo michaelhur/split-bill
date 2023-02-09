@@ -2,6 +2,7 @@ import React from 'react';
 import {useRecoilValue} from 'recoil';
 import {expensesState} from '../state/expenses';
 import {groupMembersState} from '../state/groupMembers';
+import styled from 'styled-components';
 
 export const calculateMinimumTransaction = (expenses, members, amountPerPerson) => {
     const minTransactions = []
@@ -92,28 +93,79 @@ export const SettlementSummary = () => {
     const minimumTransaction = calculateMinimumTransaction(expenses, members, splitAmount)
 
     return (
-        <>
+        <StyledWrapper>
             <div>
-                <h3>3. 정산은 이렇게!</h3>
-                {totalExpenseAmount > 0 && totalMembersCount > 0
-                    ? (
-                        <>
-                            <span>{totalMembersCount} 명이 총 {totalExpenseAmount}원 지출</span>
-                            <span>한 사람당 {splitAmount}원</span>
-                            <ul>
-                                {minimumTransaction.map(({sender, receiver, amount}, index) => {
-                                    return(
-                                        <li key={`transaction-${index}`}>
-                                            <span>{sender}가 {receiver}에게 {amount}원 보내기</span>
-                                        </li>
-                                    )
-                                })}
-                            </ul>
-                        </>
-                    )
-                    : ''}
+                <StyledTitle>2. 정산은 이렇게!</StyledTitle>
+                <StyledResultWrapper>
+                    {totalExpenseAmount > 0 && totalMembersCount > 0
+                        ? (
+                            <>
+                                <span>{totalMembersCount} 명이 총 {totalExpenseAmount}원 지출</span>
+                                <span>한 사람당 {splitAmount}원</span>
+                                <StyledUl>
+                                    {minimumTransaction.map(({sender, receiver, amount}, index) => {
+                                        return(
+                                            <li key={`transaction-${index}`}>
+                                                <span>{sender}가 {receiver}에게 {amount}원 보내기</span>
+                                            </li>
+                                        )
+                                    })}
+                                </StyledUl>
+                            </>
+                        )
+                        : <span>정산 내역이 입력되지 않았습니다</span>}
+                </StyledResultWrapper>
             </div>
-        </>
+        </StyledWrapper>
     );
 };
 
+const StyledWrapper = styled.div`
+  padding: 50px;
+  background-color: #683BA1;
+  box-shadow: 3px 0 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+`
+
+const StyledTitle = styled.h3`
+  color: #FFFBFB;
+  text-align: center;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 48px;
+  letter-spacing: 0.25px;
+  margin-bottom: 15px;
+
+  @media screen and (max-width: 600px) {
+    font-size: 8vw;
+  }
+`
+
+const StyledResultWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+
+  gap: 8px;
+
+  font-size: 14px;
+  color: white;
+`
+
+const StyledUl = styled.ul`
+  font-weight: 600;
+  line-height: 200%;
+  list-style-type: disclosure-closed;
+  
+  li::marker {
+    animation: blinker 1.5s linear infinite;
+  }
+  
+  @keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }
+`

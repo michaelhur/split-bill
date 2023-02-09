@@ -61,17 +61,17 @@ export const AddExpenseForm = () => {
                 onSubmit={handleSubmit}>
                 <StyledTitle>1. 비용 추가하기</StyledTitle>
                 <StyledRow>
-                    <Form.Group>
+                    <StyledFormGroup>
                         <Form.Control
                             type="date"
                             name="expenseDate"
                             value={date}
                             onChange={(e) => setDate(e.target.value)}
                             placeholder="결제한 날짜를 선택해주세요."/>
-                    </Form.Group>
+                    </StyledFormGroup>
                 </StyledRow>
                 <StyledRow>
-                    <Form.Group>
+                    <StyledFormGroup>
                         <Form.Control
                             type="text"
                             name="expenseDescription"
@@ -84,10 +84,10 @@ export const AddExpenseForm = () => {
                             type="invalid"
                             data-valid={isDescValid}
                         >비용 내용을 입력해주셔야 합니다.</Form.Control.Feedback>
-                    </Form.Group>
+                    </StyledFormGroup>
                 </StyledRow>
                 <StyledRow>
-                    <Form.Group>
+                    <StyledFormGroup>
                         <Form.Control
                             type="number"
                             name="expenseAmount"
@@ -101,10 +101,10 @@ export const AddExpenseForm = () => {
                             type="invalid"
                             data-valid={isAmountValid}
                         >금액을 입력해주셔야 합니다.</Form.Control.Feedback>
-                    </Form.Group>
+                    </StyledFormGroup>
                 </StyledRow>
                 <StyledRow>
-                    <Form.Group>
+                    <StyledFormGroup>
                         <Form.Select
                             className="form-control"
                             name="expensePayer"
@@ -128,7 +128,7 @@ export const AddExpenseForm = () => {
                             type="invalid"
                             data-valid={isPayerValid}
                         >결제자를 선택해주셔야 합니다.</Form.Control.Feedback>
-                    </Form.Group>
+                    </StyledFormGroup>
                 </StyledRow>
                 <StyledRow>
                     <StyledSubmitButton type="submit">추가하기</StyledSubmitButton>
@@ -192,6 +192,10 @@ const StyledTitle = styled.h3`
 
 const StyledRow = styled(Row)`
   width: 100%;
+`
+
+const StyledFormGroup = styled(Form.Group)`
+  padding: 0;
 `
 
 const StyledSubmitButton = styled(Button).attrs({
