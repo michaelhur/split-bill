@@ -32,8 +32,6 @@ export const AddExpenseForm = () => {
         setIsPayerValid(payerValid)
         setIsAmountValid(amountValid)
 
-        console.log(descValid, payerValid, amountValid)
-
         return descValid && payerValid && amountValid
     }
 
@@ -119,21 +117,25 @@ export const AddExpenseForm = () => {
                             {members.map(member => {
                                 return <option key={member} value={member}>{member}</option>
                             })}
-                            <option value="영수">영수</option>
-                            <option value="영희">영희</option>
+                            {/*<option value="영수">영수</option>*/}
+                            {/*<option value="영희">영희</option>*/}
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
                         </Form.Select>
                         <Form.Control.Feedback
                             type="invalid"
                             data-valid={isPayerValid}
                         >결제자를 선택해주셔야 합니다.</Form.Control.Feedback>
                     </Form.Group>
-            </StyledRow>
-            <StyledRow>
-                <StyledSubmitButton type="submit">추가하기</StyledSubmitButton>
-            </StyledRow>
-        </StyledForm>
-</StyledWrapper>
-);
+                </StyledRow>
+                <StyledRow>
+                    <StyledSubmitButton type="submit">추가하기</StyledSubmitButton>
+                </StyledRow>
+            </StyledForm>
+        </StyledWrapper>
+    );
 };
 
 const StyledWrapper = styled.div`
@@ -182,7 +184,7 @@ const StyledTitle = styled.h3`
   line-height: 48px;
   letter-spacing: 0.25px;
   margin-bottom: 15px;
-  
+
   @media screen and (max-width: 600px) {
     font-size: 8vw;
   }

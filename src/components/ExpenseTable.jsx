@@ -27,7 +27,7 @@ export const ExpenseTable = () => {
                 <StyledTableBody>
                 {expenses.map(({date, desc, payer, amount}) => {
                     return (
-                        <tr>
+                        <tr key={Math.random()}>
                             <td>{date}</td>
                             <td>{desc}</td>
                             <td>{payer}</td>

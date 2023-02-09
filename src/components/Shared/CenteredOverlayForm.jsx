@@ -2,12 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import {Button, Container, Form, Row} from 'react-bootstrap';
 import {OverlayWrapper} from './OverlayWrapper';
+import {ServiceLogo} from './ServiceLogo';
 
 export const CenteredOverlayForm = ({title, validated, handleSubmit, children}) => {
     return (
         <>
             <CentralizedContainer>
-                <StyledH1>Dutch Pay</StyledH1>
+                <ServiceLogo>Split Bill</ServiceLogo>
                 <OverlayWrapper>
                     <Container>
                         <Form
@@ -29,7 +30,6 @@ export const CenteredOverlayForm = ({title, validated, handleSubmit, children}) 
                             </StyledRow>
                         </Form>
                     </Container>
-                    {/*{children}*/}
                 </OverlayWrapper>
             </CentralizedContainer>
         </>
