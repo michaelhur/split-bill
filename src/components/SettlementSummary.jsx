@@ -96,7 +96,7 @@ export const SettlementSummary = () => {
             <div>
                 <StyledTitle>2. 정산은 이렇게!</StyledTitle>
                 <StyledResultWrapper>
-                    {totalExpenseAmount > 0 && totalMembersCount > 0
+                    {totalExpenseAmount > 0
                         ? (
                             <>
                                 <span>{totalMembersCount} 명이 총 {totalExpenseAmount}원 지출</span>
@@ -112,7 +112,8 @@ export const SettlementSummary = () => {
                                 </StyledUl>
                             </>
                         )
-                        : <span>정산 내역이 입력되지 않았습니다</span>}
+                        : <span>정산 내역이 입력되지 않았습니다</span>
+                    }
                 </StyledResultWrapper>
             </div>
         </StyledWrapper>

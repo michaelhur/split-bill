@@ -3,8 +3,11 @@ import {Form} from 'react-bootstrap';
 import {useSetRecoilState} from 'recoil';
 import {groupNameState} from '../state/groupName';
 import React, {useState} from 'react';
+import {useNavigate} from 'react-router-dom';
+import {ROUTES} from '../routes';
 
 export const CreateGroup = () => {
+    const navigate = useNavigate()
     const [validated, setValidated] = useState(false);
     const setGroupName = useSetRecoilState(groupNameState)
 
@@ -12,7 +15,10 @@ export const CreateGroup = () => {
         event.preventDefault()
 
         const form = event.currentTarget
-        if (!form.checkValidity()) event.stopPropagation()
+        if (form.checkValidity()) {
+            event.stopPropagation()
+            navigate(ROUTES.ADD_MEMBERS)
+        }
 
         setValidated(true)
     }

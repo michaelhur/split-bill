@@ -5,8 +5,11 @@ import {useRecoilState, useRecoilValue} from 'recoil';
 import {groupNameState} from '../state/groupName';
 import {groupMembersState} from '../state/groupMembers';
 import styled from 'styled-components';
+import {useNavigate} from 'react-router-dom';
+import {ROUTES} from '../routes';
 
 export const AddMembers = () => {
+    const navigate = useNavigate()
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [validated, setValidated] = useState(false);
 
@@ -17,6 +20,7 @@ export const AddMembers = () => {
         event.preventDefault()
         setFormSubmitted(true)
         setValidated(true)
+        navigate(ROUTES.EXPENSE_MAIN)
     }
 
     const title = `${groupName} 그룹의 속한 사람들의 이름을 모두 적어주세요!`
