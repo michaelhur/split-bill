@@ -114,11 +114,17 @@ export const AddExpenseForm = () => {
                             isInvalid={!isPayerValid && isFormValidated}
                             placeholder="누가 결제했나요?">
                             <option disabled value="">누가 결제했나요?</option>
-                            <option value="영희">영희</option>
-                            <option value="영수">영수</option>
-                            {members.map(member => {
-                                return <option key={member} value={member}>{member}</option>
-                            })}
+                            {members.length > 0
+                                ? members.map(member => {
+                                    return <option key={member} value={member}>{member}</option>
+                                })
+                                : (
+                                    <>
+                                    <option key="영수" value="영수">영수</option>
+                                    <option key="영희" value="영희">영희</option>
+                                    </>
+                                )
+                            }
                         </Form.Select>
                         <Form.Control.Feedback
                             type="invalid"
