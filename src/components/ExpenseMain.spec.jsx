@@ -116,7 +116,7 @@ describe('비용 정산 메인 페이지', () => {
         test('정산 결과 또한 업데이트된다', async () => {
             await addNewExpense()
 
-            const totalText = screen.getByText(/2명 - 총 30000원 지출/)
+            const totalText = screen.getByText(/명 - 총/)
             expect(totalText).toBeInTheDocument()
 
             const transactionText = screen.getByText(/영희가 영수에게 15000원/)

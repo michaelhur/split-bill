@@ -12,7 +12,7 @@ const renderComponent = () => {
 
     const input = screen.getByPlaceholderText('ex) 2022 제주도 여행')
     const saveButton = screen.getByText('저장')
-    const errorMessage = screen.queryByText('그룹 이름을 입력해주세요!')
+    const errorMessage = screen.getByTestId('errorMessage')
 
     return {
         input,
@@ -33,7 +33,7 @@ describe('그룹 생성 페이지', () => {
         const {saveButton, errorMessage} = renderComponent()
 
         await userEvent.click(saveButton)
-        expect(errorMessage).not.toBeNull()
+        expect(errorMessage).toHaveAttribute("data-valid", "false")
     })
 
     test('그룹 이름을 입력 후, 저장 버튼 클릭시, 저장 성공', async () => {
@@ -41,6 +41,6 @@ describe('그룹 생성 페이지', () => {
 
         await userEvent.type(input, '예시 그룹명')
         await userEvent.click(saveButton)
-        expect(errorMessage).not.toHaveStyle({"display": "none"})
+        expect(errorMessage).toHaveAttribute("data-valid", "true")
     })
 })

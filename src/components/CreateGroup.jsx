@@ -3,16 +3,26 @@ import {Form} from 'react-bootstrap';
 import {useSetRecoilState} from 'recoil';
 import {groupNameState} from '../state/groupName';
 import React, {useState} from 'react';
+import {useNavigate} from 'react-router-dom';
+import {ROUTES} from '../routes';
 
 export const CreateGroup = () => {
     const [validated, setValidated] = useState(false);
+    const [isValidGroupName, setIsValidGroupName] = useState(false);
     const setGroupName = useSetRecoilState(groupNameState)
+    const navigate = useNavigate()
 
     const handleSubmit = (event) => {
         event.preventDefault()
 
         const form = event.currentTarget
-        if (!form.checkValidity()) event.stopPropagation()
+        if (form.checkValidity()) {
+            setIsValidGroupName(true)
+            navigate(ROUTES.ADD_MEMBERS)
+        } else {
+            event.stopPropagation()
+            setIsValidGroupName(false)
+        }
 
         setValidated(true)
     }
@@ -31,7 +41,11 @@ export const CreateGroup = () => {
                     }}
                     required
                 />
-                <Form.Control.Feedback type="invalid">
+                <Form.Control.Feedback
+                    type="invalid"
+                    data-testid="errorMessage"
+                    data-valid={isValidGroupName}
+                >
                     그룹 이름을 입력해주세요!
                 </Form.Control.Feedback>
             </Form.Group>
