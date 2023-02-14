@@ -11,5 +11,94 @@
       "StackId": "arn:aws:cloudformation:ap-northeast-2:614309495310:stack/amplify-amplifya0b78ebfa7ca4-staging-32901/b9ae3320-ac17-11ed-9d06-0246fa403f2c",
       "AmplifyAppId": "d3efi2vlo26xyc"
     }
+  },
+  "storage": {
+    "groups": {
+      "service": "DynamoDB",
+      "providerPlugin": "awscloudformation",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplifya0b78ebfa7ca4-staging-32901-deployment/amplify-cfn-templates/storage/groups-cloudformation-template.json",
+        "logicalId": "storagegroups"
+      },
+      "lastPushTimeStamp": "2023-02-14T06:42:21.317Z",
+      "output": {
+        "PartitionKeyName": "guid",
+        "Region": "ap-northeast-2",
+        "Arn": "arn:aws:dynamodb:ap-northeast-2:614309495310:table/groups-staging",
+        "StreamArn": "arn:aws:dynamodb:ap-northeast-2:614309495310:table/groups-staging/stream/2023-02-14T06:39:01.923",
+        "PartitionKeyType": "S",
+        "Name": "groups-staging"
+      },
+      "lastPushDirHash": "AadwkuQ78cIg3Z/RugNeqrEoSeM="
+    }
+  },
+  "function": {
+    "splitBillsLambda": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "storage",
+          "resourceName": "groups",
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "attributeEnvMap": {
+            "Name": "TABLE_NAME",
+            "Arn": "TABLE_ARN"
+          }
+        }
+      ],
+      "lastBuildTimeStamp": "2023-02-14T06:38:45.274Z",
+      "lastBuildType": "PROD",
+      "lastPackageTimeStamp": "2023-02-14T06:38:45.841Z",
+      "distZipFilename": "splitBillsLambda-467a712f435776586c46-build.zip",
+      "s3Bucket": {
+        "deploymentBucketName": "amplify-amplifya0b78ebfa7ca4-staging-32901-deployment",
+        "s3Key": "amplify-builds/splitBillsLambda-467a712f435776586c46-build.zip"
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplifya0b78ebfa7ca4-staging-32901-deployment/amplify-cfn-templates/function/splitBillsLambda-cloudformation-template.json",
+        "logicalId": "functionsplitBillsLambda"
+      },
+      "lastPushTimeStamp": "2023-02-14T06:42:21.317Z",
+      "output": {
+        "LambdaExecutionRoleArn": "arn:aws:iam::614309495310:role/splitbillLambdaRole95d085b7-staging",
+        "Region": "ap-northeast-2",
+        "Arn": "arn:aws:lambda:ap-northeast-2:614309495310:function:splitBillsLambda-staging",
+        "Name": "splitBillsLambda-staging",
+        "LambdaExecutionRole": "splitbillLambdaRole95d085b7-staging"
+      },
+      "lastPushDirHash": "CYxO1RiuQWF5FDfgoSeGawSc75k="
+    }
+  },
+  "api": {
+    "splitBillsApi": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "splitBillsLambda",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ],
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplifya0b78ebfa7ca4-staging-32901-deployment/amplify-cfn-templates/api/splitBillsApi-cloudformation-template.json",
+        "logicalId": "apisplitBillsApi"
+      },
+      "lastPushTimeStamp": "2023-02-14T06:42:21.317Z",
+      "output": {
+        "ApiName": "splitBillsApi",
+        "RootUrl": "https://gf639b6y47.execute-api.ap-northeast-2.amazonaws.com/staging",
+        "ApiId": "gf639b6y47"
+      },
+      "lastPushDirHash": "JQbuiJDftsVDRJFI7BxUA4TwaDE="
+    }
   }
 }

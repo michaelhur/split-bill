@@ -10,6 +10,20 @@
       "StackName": "amplify-amplifya0b78ebfa7ca4-staging-32901",
       "StackId": "arn:aws:cloudformation:ap-northeast-2:614309495310:stack/amplify-amplifya0b78ebfa7ca4-staging-32901/b9ae3320-ac17-11ed-9d06-0246fa403f2c",
       "AmplifyAppId": "d3efi2vlo26xyc"
+    },
+    "categories": {
+      "function": {
+        "splitBillsLambda": {
+          "deploymentBucketName": "amplify-amplifya0b78ebfa7ca4-staging-32901-deployment",
+          "s3Key": "amplify-builds/splitBillsLambda-467a712f435776586c46-build.zip"
+        }
+      },
+      "storage": {
+        "groups": {}
+      },
+      "api": {
+        "splitBillsApi": {}
+      }
     }
   }
 }
