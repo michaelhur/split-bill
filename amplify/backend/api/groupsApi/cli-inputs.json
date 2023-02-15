@@ -3,7 +3,7 @@
   "paths": {
     "/groups": {
       "name": "/groups",
-      "lambdaFunction": "splitBillsLambda",
+      "lambdaFunction": "groupsLambda",
       "permissions": {
         "setting": "open"
       }

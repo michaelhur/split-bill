@@ -1,6 +1,6 @@
 {
   "api": {
-    "splitBillsApi": {
+    "groupsApi": {
       "dependsOn": [
         {
           "attributes": [
@@ -8,7 +8,7 @@
             "Arn"
           ],
           "category": "function",
-          "resourceName": "splitBillsLambda"
+          "resourceName": "groupsLambda"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -16,7 +16,7 @@
     }
   },
   "function": {
-    "splitBillsLambda": {
+    "groupsLambda": {
       "build": true,
       "dependsOn": [
         {
@@ -37,19 +37,19 @@
     }
   },
   "parameters": {
-    "AMPLIFY_function_splitBillsLambda_deploymentBucketName": {
+    "AMPLIFY_function_groupsLambda_deploymentBucketName": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "splitBillsLambda"
+          "resourceName": "groupsLambda"
         }
       ]
     },
-    "AMPLIFY_function_splitBillsLambda_s3Key": {
+    "AMPLIFY_function_groupsLambda_s3Key": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "splitBillsLambda"
+          "resourceName": "groupsLambda"
         }
       ]
     }
