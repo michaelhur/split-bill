@@ -25,5 +25,33 @@
         "splitBillsApi": {}
       }
     }
+  },
+  "splitbill": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-splitbill-splitbill-232557-authRole",
+      "UnauthRoleArn": "arn:aws:iam::614309495310:role/amplify-splitbill-splitbill-232557-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::614309495310:role/amplify-splitbill-splitbill-232557-authRole",
+      "Region": "ap-northeast-2",
+      "DeploymentBucketName": "amplify-splitbill-splitbill-232557-deployment",
+      "UnauthRoleName": "amplify-splitbill-splitbill-232557-unauthRole",
+      "StackName": "amplify-splitbill-splitbill-232557",
+      "StackId": "arn:aws:cloudformation:ap-northeast-2:614309495310:stack/amplify-splitbill-splitbill-232557/aa0a05e0-ad3c-11ed-af0f-062980b1454e",
+      "AmplifyAppId": "d3efi2vlo26xyc"
+    },
+    "categories": {
+      "function": {
+        "splitBillsLambda": {
+          "deploymentBucketName": "amplify-splitbill-splitbill-232557-deployment",
+          "s3Key": "amplify-builds/splitBillsLambda-4c6c354833465777394b-build.zip"
+        },
+        "groups": {}
+      },
+      "api": {
+        "splitBillsApi": {}
+      },
+      "storage": {
+        "groups": {}
+      }
+    }
   }
 }
