@@ -1,6 +1,6 @@
 {
   "httpMethod": "PUT",
-  "path": "/groups/19536b30-ac4d-11ed-a60c-6fa2a8cbbcd3/members",
+  "path": "/groups/2504b300-ad4f-11ed-8fc1-29f4493bfacb/members",
   "headers": {
     "Content-Type": "application/json"
   },
