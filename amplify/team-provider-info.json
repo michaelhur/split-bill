@@ -1,28 +1,28 @@
 {
   "staging": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-amplifya0b78ebfa7ca4-staging-32901-authRole",
-      "UnauthRoleArn": "arn:aws:iam::614309495310:role/amplify-amplifya0b78ebfa7ca4-staging-32901-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::614309495310:role/amplify-amplifya0b78ebfa7ca4-staging-32901-authRole",
+      "AuthRoleName": "amplify-amplify1228e3bc9d704-staging-152518-authRole",
+      "UnauthRoleArn": "arn:aws:iam::614309495310:role/amplify-amplify1228e3bc9d704-staging-152518-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::614309495310:role/amplify-amplify1228e3bc9d704-staging-152518-authRole",
       "Region": "ap-northeast-2",
-      "DeploymentBucketName": "amplify-amplifya0b78ebfa7ca4-staging-32901-deployment",
-      "UnauthRoleName": "amplify-amplifya0b78ebfa7ca4-staging-32901-unauthRole",
-      "StackName": "amplify-amplifya0b78ebfa7ca4-staging-32901",
-      "StackId": "arn:aws:cloudformation:ap-northeast-2:614309495310:stack/amplify-amplifya0b78ebfa7ca4-staging-32901/b9ae3320-ac17-11ed-9d06-0246fa403f2c",
+      "DeploymentBucketName": "amplify-amplify1228e3bc9d704-staging-152518-deployment",
+      "UnauthRoleName": "amplify-amplify1228e3bc9d704-staging-152518-unauthRole",
+      "StackName": "amplify-amplify1228e3bc9d704-staging-152518",
+      "StackId": "arn:aws:cloudformation:ap-northeast-2:614309495310:stack/amplify-amplify1228e3bc9d704-staging-152518/f4283310-ad44-11ed-9b3c-02619d6c3fc4",
       "AmplifyAppId": "d3efi2vlo26xyc"
     },
     "categories": {
       "function": {
-        "splitBillsLambda": {
-          "deploymentBucketName": "amplify-amplifya0b78ebfa7ca4-staging-32901-deployment",
-          "s3Key": "amplify-builds/splitBillsLambda-467a712f435776586c46-build.zip"
+        "groupsLambda": {
+          "deploymentBucketName": "amplify-amplify1228e3bc9d704-staging-152518-deployment",
+          "s3Key": "amplify-builds/groupsLambda-3035684e78614757744c-build.zip"
         }
       },
       "storage": {
         "groups": {}
       },
       "api": {
-        "splitBillsApi": {}
+        "groupsApi": {}
       }
     }
   }
