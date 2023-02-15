@@ -45,97 +45,28 @@ app.use(function(req, res, next) {
     next()
 });
 
-// convert url string param to expected Type
-const convertUrlType = (param, type) => {
-    switch(type) {
-        case "N":
-            return Number.parseInt(param);
-        default:
-            return param;
-    }
-}
-
 /********************************
  * HTTP Get method for list objects *
  ********************************/
 
 app.get(path + hashKeyPath, function(req, res) {
-    const condition = {}
-    condition[partitionKeyName] = {
-        ComparisonOperator: 'EQ'
-    }
-
-    if (req.apiGateway) {
-        condition[partitionKeyName]['AttributeValueList'] = [req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH ];
-    } else {
-        try {
-            condition[partitionKeyName]['AttributeValueList'] = [ convertUrlType(req.params[partitionKeyName], partitionKeyType) ];
-        } catch(err) {
-            res.statusCode = 500;
-            res.json({error: 'Wrong column type ' + err});
-        }
-    }
-
-    let queryParams = {
-        TableName: tableName,
-        KeyConditions: condition
-    }
-
-    dynamodb.query(queryParams, (err, data) => {
-        if (err) {
-            res.statusCode = 500;
-            res.json({error: 'Could not load items: ' + err});
-        } else {
-            res.json(data.Items);
-        }
-    });
-});
-
-/*****************************************
- * HTTP Get method for get single object *
- *****************************************/
-
-app.get(path + '/object' + hashKeyPath + sortKeyPath, function(req, res) {
-    const params = {};
-    if (req.apiGateway) {
-        params[partitionKeyName] = req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH;
-    } else {
-        params[partitionKeyName] = req.params[partitionKeyName];
-        try {
-            params[partitionKeyName] = convertUrlType(req.params[partitionKeyName], partitionKeyType);
-        } catch(err) {
-            res.statusCode = 500;
-            res.json({error: 'Wrong column type ' + err});
-        }
-    }
-    if (hasSortKey) {
-        try {
-            params[sortKeyName] = convertUrlType(req.params[sortKeyName], sortKeyType);
-        } catch(err) {
-            res.statusCode = 500;
-            res.json({error: 'Wrong column type ' + err});
-        }
-    }
-
     let getItemParams = {
         TableName: tableName,
-        Key: params
+        Key: { [partitionKeyName]: req.params[partitionKeyName] },
     }
 
-    dynamodb.get(getItemParams,(err, data) => {
-        if(err) {
-            res.statusCode = 500;
-            res.json({error: 'Could not load items: ' + err.message});
+    dynamodb.get(getItemParams, (err, data) => {
+        if (err) {
+            res.statusCode = 500
+            res.json({ error: "Could not load items: " + err.message })
+        } else if (Object.keys(data).length === 0) {
+            res.statusCode = 404
+            res.json({ error: "Item not found" })
         } else {
-            if (data.Item) {
-                res.json(data.Item);
-            } else {
-                res.json(data) ;
-            }
+            res.json({ data: data.Item })
         }
-    });
+    })
 });
-
 
 /************************************
  * 멤버 추가 API *
