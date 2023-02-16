@@ -15,7 +15,7 @@ const App = () => {
         <BrowserRouter>
             <RecoilRoot>
                 <Routes>
-                    <Route path="/" element={<Navigate to="/group" />} />
+                    <Route path="/" element={<Navigate to={ROUTES.CREATE_GROUP} />} />
                     <Route path={ROUTES.CREATE_GROUP} element={<CreateGroup />} />
                     <Route path={ROUTES.ADD_MEMBERS} element={<AddMembers />} />
                     <Route path={ROUTES.EXPENSE_MAIN} element={<ExpenseMain />} />

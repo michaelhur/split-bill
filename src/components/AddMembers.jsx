@@ -6,7 +6,7 @@ import {groupNameState} from '../state/groupName';
 import {groupMembersState} from '../state/groupMembers';
 import styled from 'styled-components';
 import {useNavigate} from 'react-router-dom';
-import {ROUTES} from '../routes';
+import {ROUTE_UTILS, ROUTES} from '../routes';
 import {groupIdState} from '../state/groupId';
 import {API} from 'aws-amplify';
 
@@ -15,7 +15,7 @@ export const AddMembers = () => {
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [validated, setValidated] = useState(false);
 
-    const groupId = useRecoilValue(groupIdState)
+    const guid = useRecoilValue(groupIdState)
     const groupName = useRecoilValue(groupNameState)
     const [groupMembers, setGroupMembers] = useRecoilState(groupMembersState)
 
@@ -23,13 +23,13 @@ export const AddMembers = () => {
     const isError = formSubmitted && groupMembers.length === 0
 
     const saveGroupMembers = () => {
-        API.put('groupsApi', `/groups/${groupId}/members`, {
+        API.put('groupsApi', `/groups/${guid}/members`, {
             body: {
                 members: groupMembers
             }
         })
             .then((response) => {
-                navigate(ROUTES.EXPENSE_MAIN)
+                navigate(ROUTE_UTILS.EXPENSE_MAIN(guid))
             })
             .catch(error => {
                 console.log(error.response)
