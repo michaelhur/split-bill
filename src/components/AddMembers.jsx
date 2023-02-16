@@ -7,12 +7,14 @@ import {groupMembersState} from '../state/groupMembers';
 import styled from 'styled-components';
 import {useNavigate} from 'react-router-dom';
 import {ROUTES} from '../routes';
+import {groupIdState} from '../state/groupId';
 
 export const AddMembers = () => {
     const navigate = useNavigate()
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [validated, setValidated] = useState(false);
 
+    const groupId = useRecoilValue(groupIdState)
     const groupName = useRecoilValue(groupNameState)
     const [groupMembers, setGroupMembers] = useRecoilState(groupMembersState)
 
