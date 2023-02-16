@@ -36,17 +36,6 @@ export const CenteredOverlayForm = ({title, validated, handleSubmit, children}) 
     )
 };
 
-const StyledH1 = styled.h1`
-  font-style: normal;
-  font-weight: 700;
-  font-size: 48px;
-  line-height: 48px;
-
-  letter-spacing: 0.25px;
-
-  color: #6610F2;
-`
-
 const CentralizedContainer = styled(Container)`
   display: flex;
   flex-direction: column;

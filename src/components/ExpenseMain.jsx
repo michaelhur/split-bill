@@ -3,13 +3,12 @@ import {AddExpenseForm} from './AddExpenseForm';
 import {ExpenseTable} from './ExpenseTable';
 import {Col} from 'react-bootstrap';
 import styled from 'styled-components';
-import {useRecoilValue} from 'recoil';
-import {groupNameState} from '../state/groupName';
 import {SettlementSummary} from './SettlementSummary';
 import {ServiceLogo} from './Shared/ServiceLogo';
+import {useGroupData} from '../hooks/useGroupData';
 
 export const ExpenseMain = () => {
-    const groupName = useRecoilValue(groupNameState)
+    const {groupName} = useGroupData()
 
     return (
         <StyledExpensesMainWrapper>

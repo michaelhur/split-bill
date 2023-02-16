@@ -18,8 +18,11 @@
       "function": {
         "groupsLambda": {
           "deploymentBucketName": "amplify-amplify1228e3bc9d704-staging-152518-deployment",
-          "s3Key": "amplify-builds/groupsLambda-3035684e78614757744c-build.zip"
+          "s3Key": "amplify-builds/groupsLambda-796745486c344a355278-build.zip"
         }
+      },
+      "api": {
+        "groupsApi": {}
       }
     }
   }
