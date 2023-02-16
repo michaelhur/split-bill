@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import {useNavigate} from 'react-router-dom';
 import {ROUTES} from '../routes';
 import {groupIdState} from '../state/groupId';
+import {API} from 'aws-amplify';
 
 export const AddMembers = () => {
     const navigate = useNavigate()
@@ -18,15 +19,31 @@ export const AddMembers = () => {
     const groupName = useRecoilValue(groupNameState)
     const [groupMembers, setGroupMembers] = useRecoilState(groupMembersState)
 
+    const title = `${groupName} 그룹의 속한 사람들의 이름을 모두 적어주세요!`
+    const isError = formSubmitted && groupMembers.length === 0
+
+    const saveGroupMembers = () => {
+        API.put('groupsApi', `/groups/${groupId}/members`, {
+            body: {
+                members: groupMembers
+            }
+        })
+            .then((response) => {
+                navigate(ROUTES.EXPENSE_MAIN)
+            })
+            .catch(error => {
+                console.log(error.response)
+            })
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault()
         setFormSubmitted(true)
         setValidated(true)
-        navigate(ROUTES.EXPENSE_MAIN)
+        if (groupMembers.length > 0) {
+            saveGroupMembers()
+        }
     }
-
-    const title = `${groupName} 그룹의 속한 사람들의 이름을 모두 적어주세요!`
-    const isError = formSubmitted && groupMembers.length === 0
 
     return (
         <CenteredOverlayForm
