@@ -12,17 +12,14 @@
       "AmplifyAppId": "d3efi2vlo26xyc"
     },
     "categories": {
+      "storage": {
+        "groups": {}
+      },
       "function": {
         "groupsLambda": {
           "deploymentBucketName": "amplify-amplify1228e3bc9d704-staging-152518-deployment",
           "s3Key": "amplify-builds/groupsLambda-3035684e78614757744c-build.zip"
         }
-      },
-      "storage": {
-        "groups": {}
-      },
-      "api": {
-        "groupsApi": {}
       }
     }
   }

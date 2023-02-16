@@ -20,7 +20,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplify1228e3bc9d704-staging-152518-deployment/amplify-cfn-templates/storage/groups-cloudformation-template.json",
         "logicalId": "storagegroups"
       },
-      "lastPushTimeStamp": "2023-02-15T16:34:00.945Z",
+      "lastPushTimeStamp": "2023-02-16T05:16:23.312Z",
       "output": {
         "PartitionKeyName": "guid",
         "Region": "ap-northeast-2",
@@ -51,8 +51,8 @@
           }
         }
       ],
-      "lastDevBuildTimeStamp": "2023-02-15T16:39:09.145Z",
-      "lastBuildType": "DEV",
+      "lastDevBuildTimeStamp": "2023-02-15T16:29:40.706Z",
+      "lastBuildType": "PROD",
       "lastBuildTimeStamp": "2023-02-15T16:29:54.677Z",
       "lastPackageTimeStamp": "2023-02-15T16:29:55.002Z",
       "distZipFilename": "groupsLambda-3035684e78614757744c-build.zip",
@@ -64,7 +64,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplify1228e3bc9d704-staging-152518-deployment/amplify-cfn-templates/function/groupsLambda-cloudformation-template.json",
         "logicalId": "functiongroupsLambda"
       },
-      "lastPushTimeStamp": "2023-02-15T16:34:00.945Z",
+      "lastPushTimeStamp": "2023-02-16T05:16:23.314Z",
       "output": {
         "LambdaExecutionRoleArn": "arn:aws:iam::614309495310:role/splitbillLambdaRoledd25e3ce-staging",
         "Region": "ap-northeast-2",
@@ -93,7 +93,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplify1228e3bc9d704-staging-152518-deployment/amplify-cfn-templates/api/groupsApi-cloudformation-template.json",
         "logicalId": "apigroupsApi"
       },
-      "lastPushTimeStamp": "2023-02-15T16:34:00.945Z",
+      "lastPushTimeStamp": "2023-02-16T05:16:23.315Z",
       "output": {
         "ApiName": "groupsApi",
         "RootUrl": "https://c0xrdng33l.execute-api.ap-northeast-2.amazonaws.com/staging",
