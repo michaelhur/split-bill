@@ -4,6 +4,8 @@ import {useRecoilValue, useSetRecoilState} from 'recoil';
 import {groupMembersState} from '../state/groupMembers';
 import {expensesState} from '../state/expenses';
 import styled from 'styled-components';
+import {API} from 'aws-amplify';
+import {groupIdState} from '../state/groupId';
 
 export const AddExpenseForm = () => {
     const members = useRecoilValue(groupMembersState)
@@ -21,6 +23,7 @@ export const AddExpenseForm = () => {
     const [isAmountValid, setIsAmountValid] = useState(false);
     const [isPayerValid, setIsPayerValid] = useState(false);
 
+    const guid = useRecoilValue(groupIdState)
     const addExpense = useSetRecoilState(expensesState)
 
     const checkFormValidity = () => {
@@ -35,6 +38,21 @@ export const AddExpenseForm = () => {
         return descValid && payerValid && amountValid
     }
 
+    const saveExpense = (newExpense) => {
+        API.put('groupsApi', `/groups/${guid}/expenses`, {
+            body: {
+                expense: newExpense
+            }
+        })
+            .then(response => {
+                addExpense(prevExpenses => [
+                    ...prevExpenses,
+                    newExpense
+                ])
+            })
+            .catch()
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault()
 
@@ -45,10 +63,7 @@ export const AddExpenseForm = () => {
                 amount,
                 payer
             }
-            addExpense(prevExpenses => [
-                ...prevExpenses,
-                newExpense
-            ])
+            saveExpense(newExpense)
         }
 
         setIsFormValidated(true)
